@@ -40,8 +40,7 @@ in the path for you. To check you're in the right place, run `ls`. You should se
     bash install.sh
 
 It builds the app (about 30 seconds), prints a quick hardware check, and then asks for
-your Mac login password once. The background helper needs administrator rights to
-control the fans. As you type the password, nothing shows on screen. That's normal.
+your Mac login password once. As you type the password, nothing shows on screen. That's normal.
 Type it and press Return.
 
 When it prints `Done.`, you should see a fan icon and the chip temperature in the menu
