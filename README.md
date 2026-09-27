@@ -12,11 +12,52 @@ was already running, and at 95 °C it goes to full speed.
 
 ## Install
 
-1. If you don't have Apple's Command Line Tools: `xcode-select --install`
-2. In Terminal, from this folder: `chmod +x install.sh uninstall.sh && ./install.sh`
-3. Enter your password when asked (the helper needs root to talk to the fans).
+**1. Unzip.** Double-click `FanCool.zip` in Finder. You get a `FanCool` folder next
+to it (usually `~/Downloads/FanCool`).
 
-A fan icon with the chip temperature appears in the menu bar (↑ means boosting).
+**2. Open Terminal** (press ⌘ Space, type `Terminal`, press Return).
+
+**3. Make sure Apple's Command Line Tools are installed** (they include the Swift
+compiler). Paste this and press Return:
+
+    xcode-select -p
+
+If it prints a path such as `/Library/Developer/CommandLineTools`, you're set. If it
+prints an error, run `xcode-select --install`, click **Install** in the window that
+pops up, wait for it to finish (a few minutes), then continue.
+
+**4. Go into the FanCool folder.** If it's in Downloads:
+
+    cd ~/Downloads/FanCool
+
+If you moved it somewhere else, type `cd ` (with a space after it), drag the
+`FanCool` folder from Finder onto the Terminal window, and press Return. Terminal fills
+in the path for you. To check you're in the right place, run `ls`. You should see
+`install.sh`, `uninstall.sh`, `README.md` and `Sources`.
+
+**5. Run the installer:**
+
+    bash install.sh
+
+It builds the app (about 30 seconds), prints a quick hardware check, and then asks for
+your Mac login password once. The background helper needs administrator rights to
+control the fans. As you type the password, nothing shows on screen. That's normal.
+Type it and press Return.
+
+When it prints `Done.`, you should see a fan icon and the chip temperature in the menu
+bar (↑ means it's boosting). You can close Terminal. FanCool starts by itself each
+time you log in.
+
+> Why `bash install.sh` and not `./install.sh`? `./install.sh` only works if the file
+> is marked as executable, and unzipping sometimes removes that mark. You'd then see
+> "permission denied" and need `chmod +x install.sh` first. `bash install.sh` works
+> either way.
+
+**6. (Optional) Test the fans:**
+
+    sudo "/Library/Application Support/FanCool/fancoold" --test
+
+Your fans should get loud for 8 seconds, then settle back down.
 
 ## Menu
 
@@ -41,4 +82,6 @@ A fan icon with the chip temperature appears in the menu bar (↑ means boosting
 
 ## Uninstall
 
-    ./uninstall.sh
+In Terminal, go into the FanCool folder as in step 4, then run:
+
+    bash uninstall.sh
